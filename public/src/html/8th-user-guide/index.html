@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReadingGate User Guide</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0 0;
+      background:
+        linear-gradient(90deg, rgba(240, 199, 111, 0.86) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(0deg, rgba(240, 199,111, 0.86) 1px, transparent 1px) 0 0 / 28px 28px,
+        #FFE7A5;
+      color: #333;
+    }
+
+    .rg-guide {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 12px;
+      position: relative;
+      overflow-x: clip;
+      overflow-y: visible;
+      font-family: inherit;
+    }
+
+    @media (min-width: 600px) {
+      .rg-guide {
+        overflow-x: visible;
+      }
+    }
+
+    .rg-guide * {
+      font-family: inherit;
+    }
+
+    .rg-guide__hero-logo {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 120px;
+      margin-top: 40px;
+      margin-bottom: 32px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .rg-guide__table-wrap {
+      background: #fff;
+      border: 2px solid #10b116;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .rg-guide__table-area {
+      position: relative;
+    }
+
+    .rg-guide__sticker {
+      position: absolute;
+      display: block;
+      width: auto;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .rg-guide__sticker--smile {
+      width: 76px;
+      top: -48px;
+      right: -20px;
+      transform: rotate(315deg);
+      transform-origin: center;
+    }
+
+    .rg-guide__sticker--pencil {
+      width: 36px;
+      left: -18px;
+      bottom: -52px;
+      transform: rotate(45deg);
+      transform-origin: center;
+    }
+
+    .rg-guide__table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    .rg-guide__table th,
+    .rg-guide__table td {
+      border: 1px solid #e5e5e5;
+      padding: 14px 12px;
+      vertical-align: middle;
+      background: #ffffff;
+    }
+
+    .rg-guide__table thead th {
+      background: #09b60e;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      border-color: #09b60e;
+      text-align: center;
+      height: 30px;
+      padding: 0 8px;
+      line-height: 1;
+    }
+
+    .rg-guide__table td:first-child {
+      width: 1%;
+      white-space: nowrap;
+      text-align: center;
+      font-weight: 800;
+      color: #4a4a4a;
+      background: #ffffff;
+      letter-spacing: 0.3px;
+      padding: 10px 12px;
+    }
+
+    .rg-guide__menu-cell {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-align: center;
+    }
+
+    .rg-guide__menu-icon {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .rg-guide__menu-name {
+      font-size: 12px;
+      line-height: 1.15;
+    }
+
+    .rg-guide__desc {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.35;
+      margin-bottom: 10px;
+      word-break: keep-all;
+    }
+
+    .rg-guide__tip {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      font-size: 13px;
+      line-height: 1.35;
+      color: #ff7700;
+    }
+
+    .rg-guide__tip-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ff7700;
+      color: #fff;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      min-height: 18px;
+      padding: 0 10px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .rg-guide__tip-badge-text {
+      display: block;
+      transform: translateY(1px);
+    }
+
+    .rg-guide__tip-text {
+      display: block;
+    }
+
+    /* 구조형 템플릿 콘텐츠 전용 스타일 */
+    .has-structured-content .rg-guide__desc,
+    .has-structured-content .rg-guide__tip-text {
+      white-space: normal;
+      color: #444;
+    }
+
+    .has-structured-content .rg-guide__tip {
+      color: #ff7700;
+    }
+
+    .has-structured-content .rg-guide__tip-badge {
+      display: none;
+    }
+
+    .has-structured-content tr.has-tip-badge .rg-guide__tip-badge {
+      display: inline-flex;
+    }
+
+    .has-structured-content tr.has-tip-badge .rg-guide__tip-text {
+      color: #ff7700;
+    }
+
+    .has-structured-content tr:not(.has-tip-badge) .rg-guide__tip-text {
+      color: #444;
+    }
+
+    .rg-guide__block-title {
+      display: block;
+      color: #ff7700;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+      margin: 2px 0 0;
+    }
+
+    .rg-guide__block-title::before {
+      content: "· ";
+    }
+
+    .rg-guide__block-line {
+      display: block;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    .rg-guide__block-list {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+      color: #444;
+    }
+
+    .rg-guide__block-list-item {
+      margin-top: 2px;
+      line-height: 1.45;
+    }
+
+    .rg-guide__block-title + .rg-guide__block-line {
+      margin-top: 4px;
+    }
+
+    .rg-guide__block-line + .rg-guide__block-title {
+      margin-top: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .rg-guide__tip {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: start;
+        column-gap: 6px;
+      }
+
+      .rg-guide__tip-text {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+    }
+
+    .rg-guide__video-wrap {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 32px;
+    }
+
+    .rg-guide__video-logo {
+      align-self: center;
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: 36px;
+      object-fit: contain;
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+
+    .rg-guide__video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+      border: 2px solid #14b319;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .rg-guide__video-player {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="rg-guide">
+    <img class="rg-guide__hero-logo" src="./image/ko/img_top_logo.png" alt="상단 로고" data-translate-attr="alt:hero.logo_alt" data-translate-src="img_top_logo.png" />
+
+    <div class="rg-guide__table-area">
+      <div class="rg-guide__table-wrap">
+        <table class="rg-guide__table" aria-label="이용 가이드 표" data-translate-attr="aria-label:table.aria_label">
+          <thead>
+            <tr>
+              <th data-translate="table.header.menu">메뉴</th>
+              <th data-translate="table.header.intro">소개</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-row-id="daily">
+              <td>
+                <div class="rg-guide__menu-cell">
+                  <img class="rg-guide__menu-icon" src="./icon/reading-path.png" alt="Daily RG 아이콘" />
+                  <span class="rg-guide__menu-name" data-translate="table.daily.menu">RG TRACK</span>
+                </div>
+              </td>
+              <td>
+                <div class="rg-guide__desc" data-translate="table.daily.desc">학생 학습 레벨에 맞춰 매일 읽을 영어 도서를 엄선하여 추천</div>
+                <div class="rg-guide__tip"><span class="rg-guide__tip-badge"><span class="rg-guide__tip-badge-text" data-translate="tip.badge">이용 TIP</span></span><span class="rg-guide__tip-text" data-translate="table.daily.tip">학습 레벨을 변경하면 추천 레벨도 동일하게 변경됨</span></div>
+              </td>
+            </tr>
+            <tr data-row-id="library">
+              <td>
+                <div class="rg-guide__menu-cell">
+                  <img class="rg-guide__menu-icon" src="./icon/ebooks.png" alt="Library 아이콘" />
+                  <span class="rg-guide__menu-name" data-translate="table.library.menu">LIBRARY</span>
+                </div>
+              </td>
+              <td>
+                <div class="rg-guide__desc" data-translate="table.library.desc">온라인에서 영어 도서를 읽고 또는 종이 원서를 읽고, 온라인으로 독후 학습이 가능한 학습 콘텐츠</div>
+                <div class="rg-guide__tip"><span class="rg-guide__tip-badge"><span class="rg-guide__tip-badge-text" data-translate="tip.badge">이용 TIP</span></span><span class="rg-guide__tip-text" data-translate="table.library.tip">Continue(최근 읽었던 책의 시리즈와 레벨, 진행중인 도서레벨), 레벨별, 무비북, 주제별, 시리즈별 도서 선택 이용</span></div>
+              </td>
+            </tr>
+            <tr data-row-id="my_activity">
+              <td>
+                <div class="rg-guide__menu-cell">
+                  <img class="rg-guide__menu-icon" src="./icon/my-activity.png" alt="MY PAGE 아이콘" />
+                  <span class="rg-guide__menu-name" data-translate="table.my_activity.menu">MY PAGE</span>
+                </div>
+              </td>
+              <td>
+                <div class="rg-guide__desc" data-translate="table.my_activity.desc">학습 레벨, 독서 랭킹, 최근 학습 이력 등을 확인</div>
+                <div class="rg-guide__tip"><span class="rg-guide__tip-badge"><span class="rg-guide__tip-badge-text" data-translate="tip.badge">이용 TIP</span></span><span class="rg-guide__tip-text" data-translate="table.my_activity.tip">학습 레벨 변경 및 학습 결과 더 보기에서 기간별 상세 학습 확인</span></div>
+              </td>
+            </tr>
+            <tr data-row-id="calendar">
+              <td>
+                <div class="rg-guide__menu-cell">
+                  <img class="rg-guide__menu-icon" src="./icon/calendar.png" alt="CALENDAR 아이콘" />
+                  <span class="rg-guide__menu-name" data-translate="table.calendar.menu">CALENDAR</span>
+                </div>
+              </td>
+              <td>
+                <div class="rg-guide__desc" data-translate="table.calendar.desc">월별 출석 일수와 날짜별 학습 이력 확인</div>
+                <div class="rg-guide__tip"><span class="rg-guide__tip-badge"><span class="rg-guide__tip-badge-text" data-translate="tip.badge">이용 TIP</span></span><span class="rg-guide__tip-text" data-translate="table.calendar.tip">날짜별 학습 이력을 클릭하면 해당 일자에 학습한 도서 목록 확인</span></div>
+              </td>
+            </tr>
+            <tr data-row-id="more">
+              <td>
+                <div class="rg-guide__menu-cell">
+                  <img class="rg-guide__menu-icon" src="./icon/more.png" alt="MORE 아이콘" />
+                  <span class="rg-guide__menu-name" data-translate="table.more.menu">MORE</span>
+                </div>
+              </td>
+              <td>
+                <div class="rg-guide__desc" data-translate="table.more.desc">Level Test 이력 및 Fail 도서 확인, 각종 Setting 설정 가능</div>
+                <div class="rg-guide__tip"><span class="rg-guide__tip-badge"><span class="rg-guide__tip-badge-text" data-translate="tip.badge">이용 TIP</span></span><span class="rg-guide__tip-text" data-translate="table.more.tip">Level Test 다시 보기, 70점 미만 도서 재학습, 홈 화면 설정 등 가능</span></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <img class="rg-guide__sticker rg-guide__sticker--smile" src="./image/img_smile_sticker.png" alt="" />
+      <img class="rg-guide__sticker rg-guide__sticker--pencil" src="./image/img_pencil_sticker.png" alt="" />
+    </div>
+
+    <div class="rg-guide__video-wrap" data-template-video>
+      <img class="rg-guide__video-logo" src="./image/ko/img_movie_title.png" alt="이용 가이드 영상 보기" data-translate-attr="alt:video.logo_alt" data-translate-src="img_movie_title.png" />
+      <div class="rg-guide__video-placeholder">
+        <video
+          class="rg-guide__video-player"
+          controls
+          controlsList="nodownload"
+          disablepictureinpicture
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+          poster="./image/ko/video_poster.jpg"
+          data-translate-poster="video_poster.jpg"
+          oncontextmenu="return false;"
+        >
+          <source
+            src="https://wcfresource.a1edu.com/newsystem/8th/user-guide/ko/rg-8th-user-guide.mp4"
+            data-translate-video-src
+            type="video/mp4"
+          />
+        </video>
+      </div>
+    </div>
+
+  </div>
+  <script src="./translate/ko.js"></script>
+  <script src="./translate/en.js"></script>
+  <script src="./translate/vi.js"></script>
+  <script>
+    (function () {
+      // 공통 상수
+      var VIDEO_BASE_URL = "https://wcfresource.a1edu.com/newsystem/8th/user-guide/";
+      var ACADEMY_ROW_IDS = ["library", "my_activity", "calendar", "more"];
+      var params = new URLSearchParams(window.location.search);
+      var requestedLang = (params.get("lang") || "ko").trim().toLowerCase();
+      var requestedTemplateType = (params.get("templateType") || "default").trim().toLowerCase();
+      // 미지정/미지원 값은 기본값(ko, default)으로 처리
+      var translateMap = {
+        ko: window.TRANSLATE_KO,
+        en: window.TRANSLATE_EN,
+        vi: window.TRANSLATE_VI
+      };
+      var templateMap = {
+        default: {
+          rows: ["daily", "library", "my_activity", "calendar", "more"],
+          showVideo: true
+        },
+        academy: {
+          rows: ["library", "my_activity", "calendar", "more"],
+          showVideo: false
+        }
+      };
+      var lang = translateMap[requestedLang] ? requestedLang : "ko";
+      var templateType = templateMap[requestedTemplateType] ? requestedTemplateType : "default";
+      var templateConfig = templateMap[templateType];
+      var dict = translateMap[lang];
+      if (!dict || typeof dict !== "object") return;
+
+      function findValue(obj, path) {
+        return path.split(".").reduce(function (acc, key) {
+          return acc && acc[key] !== undefined ? acc[key] : undefined;
+        }, obj);
+      }
+
+      // 템플릿 구조/콘텐츠 적용
+      function applyTemplate(templateName, templateState, dictionary) {
+        document.body.classList.toggle("has-structured-content", templateName === "academy");
+        applyTemplateVisibility(templateState);
+      }
+
+      function applyTemplateVisibility(templateState) {
+        document.querySelectorAll("[data-row-id]").forEach(function (row) {
+          var rowId = row.getAttribute("data-row-id");
+          row.style.display = templateState.rows.indexOf(rowId) > -1 ? "" : "none";
+        });
+
+        document.querySelectorAll("[data-template-video]").forEach(function (el) {
+          el.style.display = templateState.showVideo ? "" : "none";
+        });
+      }
+
+      function applyStructuredContent(dictionary) {
+        if (!dictionary.academy || !dictionary.academy.table) return;
+        var academyTable = dictionary.academy.table;
+
+        ACADEMY_ROW_IDS.forEach(function (rowId) {
+          var row = document.querySelector('[data-row-id="' + rowId + '"]');
+          if (!row) return;
+
+          row.classList.remove("has-tip-badge");
+          var descEl = row.querySelector(".rg-guide__desc");
+          var tipEl = row.querySelector(".rg-guide__tip-text");
+          var tipWrapEl = row.querySelector(".rg-guide__tip");
+          var rowData = academyTable[rowId];
+          if (!rowData) return;
+
+          if (descEl && Array.isArray(rowData.blocks)) {
+            renderBlocks(descEl, rowData.blocks);
+          }
+          if (tipEl && rowData.tip && typeof rowData.tip.body === "string") {
+            renderTip(tipEl, rowData.tip);
+            row.classList.add("has-tip-badge");
+            if (tipWrapEl) tipWrapEl.style.display = "";
+          } else if (tipEl) {
+            tipEl.innerHTML = "";
+            if (tipWrapEl) tipWrapEl.style.display = "none";
+          }
+        });
+      }
+
+      // 구조형 콘텐츠 렌더링: title/body/list를 명시적으로 처리
+      function renderBlocks(targetEl, blocks) {
+        if (!targetEl) return;
+        targetEl.innerHTML = "";
+
+        blocks.forEach(function (block) {
+          if (block.title) {
+            var titleEl = document.createElement("span");
+            titleEl.className = "rg-guide__block-title";
+            titleEl.textContent = block.title;
+            targetEl.appendChild(titleEl);
+          }
+
+          if (block.body) {
+            normalizeNewlines(block.body).split("\n").forEach(function (line) {
+              if (!line.trim()) return;
+              var lineEl = document.createElement("span");
+              lineEl.className = "rg-guide__block-line";
+              lineEl.textContent = line;
+              targetEl.appendChild(lineEl);
+            });
+          }
+
+          if (Array.isArray(block.list) && block.list.length) {
+            var listEl = document.createElement("ul");
+            listEl.className = "rg-guide__block-list";
+            block.list.forEach(function (item) {
+              if (!item || !item.trim()) return;
+              var itemEl = document.createElement("li");
+              itemEl.className = "rg-guide__block-list-item";
+              itemEl.textContent = item;
+              listEl.appendChild(itemEl);
+            });
+            if (listEl.childNodes.length) {
+              targetEl.appendChild(listEl);
+            }
+          }
+        });
+      }
+
+      function renderTip(targetEl, tipData) {
+        if (!targetEl || !tipData || typeof tipData.body !== "string") return;
+        targetEl.innerHTML = "";
+        normalizeNewlines(tipData.body).split("\n").forEach(function (line) {
+          if (!line.trim()) return;
+          var lineEl = document.createElement("span");
+          lineEl.className = "rg-guide__block-line";
+          lineEl.textContent = line;
+          targetEl.appendChild(lineEl);
+        });
+      }
+
+      function normalizeNewlines(text) {
+        return String(text).replace(/\r\n/g, "\n");
+      }
+
+      // 번역 텍스트/속성만 적용
+      function applyTranslate(dictionary, language) {
+        document.documentElement.lang = language;
+
+        document.querySelectorAll("[data-translate]").forEach(function (el) {
+          var key = el.getAttribute("data-translate");
+          var value = findValue(dictionary, key);
+          if (typeof value === "string") el.textContent = value;
+        });
+
+        document.querySelectorAll("[data-translate-attr]").forEach(function (el) {
+          var spec = el.getAttribute("data-translate-attr");
+          if (!spec) return;
+          spec.split(",").forEach(function (pair) {
+            var chunks = pair.split(":");
+            if (chunks.length !== 2) return;
+            var attr = chunks[0].trim();
+            var key = chunks[1].trim();
+            var value = findValue(dictionary, key);
+            if (typeof value === "string") el.setAttribute(attr, value);
+          });
+        });
+      }
+
+      // 언어별 이미지/포스터/영상 경로 적용 (영상: 현재 언어 -> en -> ko)
+      function applyMedia(dictionary, language) {
+        var imageLang = dictionary.image_lang || language;
+        document.querySelectorAll("[data-translate-src]").forEach(function (el) {
+          var fileName = el.getAttribute("data-translate-src");
+          if (!fileName) return;
+          el.setAttribute("src", "./image/" + imageLang + "/" + fileName);
+        });
+
+        document.querySelectorAll("[data-translate-poster]").forEach(function (el) {
+          var fileName = el.getAttribute("data-translate-poster");
+          if (!fileName) return;
+          el.setAttribute("poster", "./image/" + imageLang + "/" + fileName);
+        });
+
+        document.querySelectorAll("[data-translate-video-src]").forEach(function (el) {
+          var video = el.parentElement;
+          if (!video || typeof video.load !== "function") return;
+          var fallbackQueue = language === "ko" ? ["ko"] : [language];
+          if (language !== "en") fallbackQueue.push("en");
+          fallbackQueue.push("ko");
+          var currentIndex = 0;
+          var currentSrc = buildVideoSrc(fallbackQueue[currentIndex]);
+          var initialSrc = el.getAttribute("src");
+
+          el.onerror = function () {
+            currentIndex += 1;
+            if (currentIndex >= fallbackQueue.length) return;
+            el.setAttribute("src", buildVideoSrc(fallbackQueue[currentIndex]));
+            video.load();
+          };
+
+          if (initialSrc !== currentSrc) {
+            el.setAttribute("src", currentSrc);
+            video.load();
+          }
+        });
+      }
+
+      function buildVideoSrc(videoLang) {
+        return VIDEO_BASE_URL + videoLang + "/rg-8th-user-guide.mp4";
+      }
+
+      // 실행 순서: 템플릿 -> 번역 -> 미디어
+      function init() {
+        applyTemplate(templateType, templateConfig, dict);
+        applyTranslate(dict, lang);
+        if (templateType === "academy") {
+          applyStructuredContent(dict);
+        }
+        applyMedia(dict, lang);
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

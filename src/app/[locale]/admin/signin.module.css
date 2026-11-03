@@ -1,0 +1,268 @@
+.container {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  padding: 32px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #182231;
+}
+
+.header p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #182231;
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.field input::placeholder {
+  color: #94a3b8;
+}
+
+.field input:focus {
+  border-color: #2563eb;
+}
+
+.loginButton {
+  width: 100%;
+  margin-top: 4px;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.loginButton:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.loginButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  margin: 0;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* 단계 표시 */
+.stepLabel {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* Step 1: 검색 */
+.searchRow {
+  display: flex;
+  gap: 8px;
+}
+
+.searchRow input {
+  flex: 1;
+  min-width: 0;
+}
+
+.searchButton {
+  flex-shrink: 0;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background: #1d4ed8;
+}
+
+/* 검색 결과 */
+.results {
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.resultsHeader span {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.resultItem:hover,
+.resultItem:focus-visible {
+  background: #eff6ff;
+}
+
+.resultArrow {
+  color: #94a3b8;
+  font-size: 22px;
+}
+
+.notice {
+  margin: 0;
+  padding: 24px 12px;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.backButton {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #2563eb;
+}
+
+/* Step 2: 선택된 Host */
+.selectedHost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #eff6ff;
+}
+
+.hostInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.hostInfo strong {
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.hostInfo small {
+  overflow: hidden;
+  color: #64748b;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hostLabel {
+  margin-bottom: 4px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.changeButton {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  background: #fff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.changeButton:hover {
+  background: #dbeafe;
+}

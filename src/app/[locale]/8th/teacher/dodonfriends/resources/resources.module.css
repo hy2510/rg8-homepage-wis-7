@@ -1,0 +1,35 @@
+/* Limit RG-B to Latin so Korean uses the shared secondary typography. */
+@font-face {
+  font-family: "Resources RG-B Latin";
+  src: url('/src/8th/fonts/SDRGGothicNeoRoundTTF-bBd.ttf') format('truetype');
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+.shell.shell, .shell.shell * { font-family: "Resources RG-B Latin", var(--font-family-secondary); }
+.main { min-width: 0; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.answerSection { margin-top: 32px; }
+.sectionTitle { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.sectionTitle h2 { font-size: 1.2em; font-weight: 700; color: #273f5e; }
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 16px; padding-top: 16px; }
+.card { position: relative; padding: 32px 16px 20px; border: 2px dotted var(--resource-color); border-radius: 24px; background: white; box-shadow: 0 4px 16px #25486b05; }
+.subtitle { position: absolute; top: 0; left: 16px; transform: translateY(-50%); max-width: calc(100% - 32px); margin: 0; padding: 8px 16px; border-radius: 20px; background: var(--resource-color); color: #fff; box-shadow: 0 0 0 8px #fff; font-size: .8em; font-weight: 700; line-height: 1.4; }
+.card h3 { font-size: 1em; font-weight: 700; color: #273f5e; margin-bottom: 20px; }
+.card ul { list-style: none; padding: 0; margin: 0; }
+.card li + li { margin-top: 8px; }
+.material { display: flex; align-items: center; justify-content: space-between; gap: 4px; width: 100%; min-height: 44px; padding: 8px; border: 0; border-radius: 8px; background: #f6f8fb; text-align: left; font-size: .8em !important; }
+.material:disabled, .book:disabled { opacity: 1 !important; color: #718096; cursor: not-allowed; }
+.material:not(:disabled):hover { background: #eaf7fa; }
+.answers { padding: 28px; border-radius: 24px; border: 1px solid #e3eaf1; background: #f8fafc; }
+.answerGroup + .answerGroup { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e7edf3; }
+.answerGroup h3 { color: var(--resource-color); font-size: .8em; font-weight: 700; margin-bottom: 12px; }
+.books { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px; }
+.book { display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 40px; padding: 8px 4px; border: 1px solid var(--resource-color); color: var(--resource-color); border-radius: 1000px; background: white; font-size: .8em !important; white-space: nowrap; }
+.book:disabled { border-color: #e0e6ed; background: #edf1f5; }
+.book:not(:disabled):hover { background: #edf8f8; }
+.empty { padding: 16px 0; color: #7b8898; font-size: .9em; }
+
+.newRow { grid-column-start: 1; }
+
+/* Material labels use secondary for both Korean and English. */
+.shell.shell .material, .shell.shell .material * { font-family: var(--font-family-secondary); }
