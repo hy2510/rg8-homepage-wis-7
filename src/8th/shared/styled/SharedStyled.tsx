@@ -777,6 +777,67 @@ export const DropdownContainerStyle = styled.div<DropdownContainerStyleProps>`
   text-align: center;
   line-height: 1.5;
   gap: ${({ viewGrid }) => (viewGrid ? '1px' : '10px')};
+
+  &.more-menu-grid {
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    justify-content: start;
+    align-items: start;
+    width: fit-content;
+    max-width: calc(100vw - 20px);
+    min-width: 0;
+    padding: 12px;
+    gap: 8px;
+    background: #fff;
+    overscroll-behavior: contain;
+
+    .more-menu-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      margin-block: 4px;
+      background: var(--line-color-primary);
+    }
+
+    .more-menu-tile {
+      display: flex;
+      width: 80px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+      min-width: 0;
+      padding: 6px;
+      border: 0;
+      border-radius: 15px;
+      background: transparent;
+      color: var(--font-color-secondary);
+      font-family: var(--font-family-secondary);
+      font-size: 0.75em;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: normal;
+      text-align: center;
+      cursor: pointer;
+
+      > span {
+        font-family: var(--font-family-secondary);
+        line-height: inherit;
+      }
+
+      img {
+        flex-shrink: 0;
+        object-fit: contain;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-light-blue-opacity-10);
+      }
+    }
+  }
 `
 
 export const DropdownItemStyle = styled.div<{
@@ -1015,7 +1076,9 @@ export const GlobalNavBarStyle = styled.div<{ $zIndex?: number }>`
     .custom-logo {
       display: block;
       width: auto;
-      height: 48px;
+      height: 50px;
+      max-width: min(100%, 250px);
+      object-fit: contain;
     }
   }
 

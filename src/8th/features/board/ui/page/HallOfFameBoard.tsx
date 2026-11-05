@@ -271,16 +271,14 @@ function HallOfFameBoardView({
       </div>
 
       {currentTier && (
-        <section className="hof-intro">
-          <HallOfFameBenefit
-            tier={currentTier.tier}
-            percent={currentTier.percent}
-            totalUserCount={currentTier.totalUserCount}
-            benefits={currentTier.benefits}
-            note={currentTier.note}
-            onClick={() => setOpenBenefit(true)}
-          />
-        </section>
+        <HallOfFameBenefit
+          tier={currentTier.tier}
+          percent={currentTier.percent}
+          totalUserCount={currentTier.totalUserCount}
+          benefits={currentTier.benefits}
+          note={currentTier.note}
+          onClick={() => setOpenBenefit(true)}
+        />
       )}
 
       <section className="leader-list">

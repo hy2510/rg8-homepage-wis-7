@@ -11,7 +11,7 @@ export default function AuthBootstrap({
 }) {
   const d = useAuth()
 
-  const { bootstrap: studentBootstrap, isLoading } = useStudentBootstrap()
+  const { bootstrap: studentBootstrap } = useStudentBootstrap()
 
   useEffect(() => {
     if (d.student === 'active') {
@@ -21,7 +21,7 @@ export default function AuthBootstrap({
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {/* 로딩 메세지 표시 영역 -> isLoading && <div>Loading...</div> */}
       {children}
     </>
   )

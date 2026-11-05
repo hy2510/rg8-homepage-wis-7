@@ -218,7 +218,8 @@ function StudyResultHistoryList({
     return <div></div>
   }
   if (allHistory.isLoading) {
-    return <div>Loading...</div>
+    // 로딩 메세지 표시 영역 (Loading ...)
+    return null
   }
   if (!allHistory.data) {
     return <div>No data</div>

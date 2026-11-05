@@ -9,6 +9,7 @@ import { SubPageNavHeader } from '@/8th/shared/ui/SubPageNavHeader'
 import SITE_PATH from '@/app/site-path'
 import useTranslation from '@/localization/client/useTranslations'
 import DateUtils from '@/util/date-utils'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import RankingChallenge from './layout/RankingChallenge'
 import RankingHallOfFame from './layout/RankingHallOfFame'
@@ -24,6 +25,11 @@ type TabType =
 
 export default function RankingRoot() {
   const { menu } = useCustomerConfiguration()
+  const searchParams = useSearchParams()
+  const isTotalPointsLink =
+    searchParams.get('tab') === 'earned-points-rank' &&
+    searchParams.get('period') === 'total' &&
+    menu.rank.monthly.open
 
   // @Language 'common'
   const { t } = useTranslation()
@@ -58,13 +64,19 @@ export default function RankingRoot() {
     }
   }
   useEffect(() => {
-    if (!!targetEventId) {
+    if (isTotalPointsLink) {
+      setSelectedTab('earned-points-rank')
+    } else if (!!targetEventId) {
       setSelectedTab('reading-king')
     }
-  }, [targetEventId])
+  }, [targetEventId, isTotalPointsLink])
 
   const [selectedTab, setSelectedTab] = useState<TabType | undefined>(
-    tabs.length > 0 ? 'default' : undefined,
+    isTotalPointsLink
+      ? 'earned-points-rank'
+      : tabs.length > 0
+        ? 'default'
+        : undefined,
   )
 
   const currentTab = selectedTab === 'default' ? tabs[0].value : selectedTab
@@ -83,7 +95,12 @@ export default function RankingRoot() {
         />
       )}
 
-      {currentTab === 'earned-points-rank' && <RankingMonth />}
+      {currentTab === 'earned-points-rank' && (
+        <RankingMonth
+          key={isTotalPointsLink ? 'total' : 'monthly'}
+          initialPeriod={isTotalPointsLink ? 'total' : 'monthly'}
+        />
+      )}
       {currentTab === 'reading-king' && <RankingChallenge />}
       {currentTab === 'level-master' && <RankingLevelMaster />}
       {currentTab === 'hall-of-fame' && <RankingHallOfFame />}

@@ -14,6 +14,7 @@ import Image from 'next/image'
 
 export interface BookItemProps {
   title: string
+  isLandscape?: boolean
   passCount: number
   point: number
   addYn: boolean
@@ -33,6 +34,7 @@ export interface BookItemProps {
 
 export default function BookItem({
   title,
+  isLandscape = false,
   passCount,
   point,
   addYn,
@@ -61,7 +63,7 @@ export default function BookItem({
 
   return (
     <>
-      <BookItemStyle level={'level'}>
+      <BookItemStyle level={'level'} className={isLandscape ? 'is-landscape' : undefined}>
         <div
           className="book-cover-container"
           onClick={() => {
@@ -78,8 +80,8 @@ export default function BookItem({
               <Image
                 src={src}
                 alt="book"
-                width={140}
-                height={200}
+                width={isLandscape ? 320 : 140}
+                height={isLandscape ? 180 : 200}
                 className={`book-cover thumbnail-img${loaded ? ' is-loaded' : ''}`}
                 style={{
                   filter: isGrayscale ? 'grayscale(100%)' : 'none',
@@ -207,9 +209,13 @@ export default function BookItem({
   )
 }
 
-export function SkeletonBookItem() {
+export function SkeletonBookItem({
+  isLandscape = false,
+}: {
+  isLandscape?: boolean
+}) {
   return (
-    <BookItemStyle level={'level'}>
+    <BookItemStyle level={'level'} className={isLandscape ? 'is-landscape' : undefined}>
       <div className="book-cover-container">
         <div className="book-cover-skeleton" />
       </div>

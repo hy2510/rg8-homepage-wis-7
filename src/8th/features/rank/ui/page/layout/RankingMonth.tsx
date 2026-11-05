@@ -11,14 +11,18 @@ import { useEffect, useState } from 'react'
 
 const RECORD_PER_PAGE = 10
 
-export default function RankingMonth() {
+export default function RankingMonth({
+  initialPeriod = 'monthly',
+}: {
+  initialPeriod?: 'monthly' | 'total'
+}) {
   const maketingEventTracker = useTrack()
 
   // @Language 'common'
   const { t } = useTranslation()
   const { menu } = useCustomerConfiguration()
 
-  const [period, setPeriod] = useState<'monthly' | 'total'>('monthly')
+  const [period, setPeriod] = useState<'monthly' | 'total'>(initialPeriod)
   const [grade, setGrade] = useState<number>(0)
 
   const rankTypes = [

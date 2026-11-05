@@ -67,7 +67,6 @@ function LevelSectionBody({
           <Divide title={divideLabel} />
         </>
       )}
-      <Gap size={gapSize} />
       <div className={containClassName}>{children}</div>
     </>
   )

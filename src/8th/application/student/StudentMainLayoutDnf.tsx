@@ -204,13 +204,13 @@ function MainLayout({ children }: { children: React.ReactNode }) {
   const { isShowSelfStudentChangeModal, onClassGroupChangeResult } =
     useSelfStudentChangeInfo()
 
-  // App User Guide 모달
-  const [isShowAppUserGuideModal, setShowAppUserGuideModal] = useState(false)
-  useEffect(() => {
-    if (userConfig._id && userConfig.appUserGuideAutoShow) {
-      setShowAppUserGuideModal(true)
-    }
-  }, [userConfig._id, userConfig.appUserGuideAutoShow])
+  // App User Guide 모달 -> 잠정 출력 보류 (2026-11-03)
+  // const [isShowAppUserGuideModal, setShowAppUserGuideModal] = useState(false)
+  // useEffect(() => {
+  //   if (userConfig._id && userConfig.appUserGuideAutoShow) {
+  //     setShowAppUserGuideModal(true)
+  //   }
+  // }, [userConfig._id, userConfig.appUserGuideAutoShow])
 
   useEffect(() => {
     injectUid(studentId)
@@ -612,7 +612,9 @@ function MainLayout({ children }: { children: React.ReactNode }) {
                 isChangeableLevel={false}
                 medal={medalName}
                 onMenuClick={(menuId) => {
-                  if (menuId === 'activity') {
+                  if (menuId === 'avatar') {
+                    router.push(SITE_PATH.DODON_FRIENDS.ACCOUNTINFO_SETTING)
+                  } else if (menuId === 'activity') {
                     router.push(SITE_PATH.DODON_FRIENDS.ACTIVITY)
                   } else if (menuId === 'todo') {
                     router.push(SITE_PATH.DODON_FRIENDS.TODO)

@@ -61,7 +61,7 @@ export default function RaceBoard() {
   ) {
     return (
       <div className="board">
-        <h1 className="page-title">{t('t8th0180')}</h1>
+        <h1 className="page-title race-title">{t('t8th0180')}</h1>
       </div>
     )
   }
@@ -164,7 +164,7 @@ function RaceBoardView({
 
   return (
     <div className="board">
-      <h1 className="page-title">{t('t8th0180')}</h1>
+      <h1 className="page-title race-title">{t('t8th0180')}</h1>
 
       <div className="stage-carousel">
         <button
@@ -180,13 +180,14 @@ function RaceBoardView({
               type="button"
               key={item.raceStageId}
               data-stage-id={item.raceStageId}
-              className={`stage-card${item.raceStageId === currentStageId ? ' is-active' : ''}`}
+              className={`stage-card${item.raceStageId === currentStageId ? ' is-active' : ''}${me && me.rgPoint < item.minRgPoint ? ' is-locked' : ''}`}
               onClick={() => {
                 const row = stageRowRef.current
                 if (row) scrollStageToCenter(row, item.raceStageId, 'smooth')
                 console.log('item.raceStageId', item.raceStageId)
                 setCurrentStageId(item.raceStageId)
               }}>
+              <span className="stage-number">{index + 1}</span>
               <Image
                 src={RGRaceStageIcon[index]}
                 alt={item.stageName}
@@ -194,7 +195,7 @@ function RaceBoardView({
                 height={80}
                 style={{
                   filter:
-                    !me || me.rgPoint > item.minRgPoint
+                    !me || me.rgPoint >= item.minRgPoint
                       ? undefined
                       : 'grayscale(100%) brightness(1.1)',
                 }}

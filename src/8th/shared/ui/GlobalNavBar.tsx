@@ -53,10 +53,16 @@ export default function GlobalNavBar() {
 
   const paymentUrl = setting.paymentable ? setting.paymentUrl : undefined
 
-  const dropdownItems: { text: string; onClick: () => void }[] = []
+  const dropdownItems: {
+    text: string
+    icon?: string | StaticImageData
+    isService?: boolean
+    onClick: () => void
+  }[] = []
   if (menu.levelTest.open) {
     dropdownItems.push({
       text: 'Level Test',
+      icon: '/src/images/more-menu/level-test.png',
       onClick: () => setLevelTestOpen(true),
     })
   }
@@ -64,6 +70,7 @@ export default function GlobalNavBar() {
   if (menu.activity.tryAgain.open) {
     dropdownItems.push({
       text: 'Try Again',
+      icon: '/src/images/more-menu/try-again.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -76,6 +83,7 @@ export default function GlobalNavBar() {
   if (menu.account.setting.open) {
     dropdownItems.push({
       text: 'Setting',
+      icon: '/src/images/more-menu/setting.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -88,6 +96,7 @@ export default function GlobalNavBar() {
   if (menu.eb.collections.workbooks.open) {
     dropdownItems.push({
       text: 'Workbook Units',
+      icon: '/src/images/more-menu/workbook-units.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -101,6 +110,7 @@ export default function GlobalNavBar() {
     dropdownItems.push({
       // 'PK Workbook MP3',
       text: t('t8th342'),
+      icon: '/src/images/more-menu/workbooklistening-dodoabc.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -118,6 +128,7 @@ export default function GlobalNavBar() {
     dropdownItems.push({
       // 'PK Classic Workbook MP3',
       text: t('t8th341'),
+      icon: '/src/images/more-menu/workbook-listening-prek.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -134,6 +145,7 @@ export default function GlobalNavBar() {
   if (menu.rank.open) {
     dropdownItems.push({
       text: t('t8th229'),
+      icon: '/src/images/more-menu/reading-rankings.png',
       onClick: () => router.push(SITE_PATH.STUDENT_8TH.RANKING),
     })
   }
@@ -141,6 +153,7 @@ export default function GlobalNavBar() {
   // 이용 가이드 보기 안내 메뉴 추가
   dropdownItems.push({
     text: t('t8th317'),
+    icon: '/src/images/more-menu/user-guide.png',
     onClick: () => {
       maketingEventTracker.eventAction('GNB 탭 클릭', {
         version: '8th',
@@ -150,30 +163,11 @@ export default function GlobalNavBar() {
     },
   })
 
-  // 단어 연습 메뉴 추가(모바일로 메뉴 축소된 경우에만 추가)
-  if (isGnbBottom) {
-    if (menu.wordPractice.open) {
-      dropdownItems.push({
-        text: MENU_ITEM.WordPractice.title,
-        onClick: () => {
-          router.push(SITE_PATH.STUDENT_8TH.WORD_PRACTICE)
-        },
-      })
-    }
-    if (menu.dubbing.open) {
-      dropdownItems.push({
-        text: MENU_ITEM.Dubbing.title,
-        onClick: () => {
-          router.push(SITE_PATH.STUDENT_8TH.DUBBING)
-        },
-      })
-    }
-  }
-
   if (!!paymentUrl) {
     if (targetTemplate === 'private') {
       dropdownItems.push({
         text: t('t8th343'),
+        icon: '/src/images/more-menu/rg-membership.png',
         onClick: () => {
           maketingEventTracker.eventAction('GNB 탭 클릭', {
             version: '8th',
@@ -185,6 +179,7 @@ export default function GlobalNavBar() {
     } else if (targetTemplate === 'private-vn' || targetTemplate === 'school') {
       dropdownItems.push({
         text: t('t8th095'),
+        icon: '/src/images/more-menu/rg-membership.png',
         onClick: () => {
           maketingEventTracker.eventAction('GNB 탭 클릭', {
             version: '8th',
@@ -201,6 +196,7 @@ export default function GlobalNavBar() {
   }
   dropdownItems.push({
     text: t('t8th320'),
+    icon: '/src/images/more-menu/homepage.png',
     onClick: () => {
       maketingEventTracker.eventAction('GNB 탭 클릭', {
         version: '8th',
@@ -216,6 +212,30 @@ export default function GlobalNavBar() {
     //   text: 'Dubbing',
     //   onClick: () => router.push(SITE_PATH.NW82.EB_WORKBOOK),
     // })
+  }
+
+  // 단어 연습 메뉴 추가(모바일로 메뉴 축소된 경우에만 추가)
+  if (isGnbBottom) {
+    if (menu.wordPractice.open) {
+      dropdownItems.push({
+        text: MENU_ITEM.WordPractice.title,
+        isService: true,
+        icon: MENU_ITEM.WordPractice.icon,
+        onClick: () => {
+          router.push(SITE_PATH.STUDENT_8TH.WORD_PRACTICE)
+        },
+      })
+    }
+    if (menu.dubbing.open) {
+      dropdownItems.push({
+        text: MENU_ITEM.Dubbing.title,
+        isService: true,
+        icon: MENU_ITEM.Dubbing.icon,
+        onClick: () => {
+          router.push(SITE_PATH.STUDENT_8TH.DUBBING)
+        },
+      })
+    }
   }
 
   return (
@@ -371,7 +391,12 @@ interface MenuItemProps {
   isDropdown?: boolean
   onDropdownToggle?: () => void
   isOpen?: boolean
-  dropdownItems?: { text: string; onClick: () => void }[]
+  dropdownItems?: {
+    text: string
+    icon?: string | StaticImageData
+    isService?: boolean
+    onClick: () => void
+  }[]
   linkUrl?: string
   onClick?: () => void
 }
@@ -456,6 +481,8 @@ function MenuItem({
       {isDropdown && isOpen && dropdownItems && (
         <GlobalNavDropdowns
           items={dropdownItems}
+          moreGrid
+          showArrow={false}
           isOpen={isOpen}
           onClose={() => {
             if (onDropdownToggle) {

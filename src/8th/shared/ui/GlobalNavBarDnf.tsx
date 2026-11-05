@@ -48,10 +48,33 @@ export default function GlobalNavBarDnf() {
 
   const router = useRouter()
 
-  const dropdownItems: { text: string; onClick: () => void }[] = []
+  const dropdownItems: {
+    text: string
+    icon?: string | StaticImageData
+    onClick: () => void
+  }[] = []
+  // 더빙, 무비 메뉴 추가(모바일로 메뉴 축소된 경우에만 추가)
+  if (isGnbBottom) {
+    if (menu.dubbing.open) {
+      dropdownItems.push({
+        text: MENU_ITEM.Dubbing.title,
+        icon: MENU_ITEM.Dubbing.icon,
+        onClick: () => router.push(SITE_PATH.DODON_FRIENDS.DUBBING),
+      })
+    }
+    if (menu.movies.open) {
+      dropdownItems.push({
+        text: MENU_ITEM.Movies.title,
+        icon: MENU_ITEM.Movies.icon,
+        onClick: () => router.push(SITE_PATH.DODON_FRIENDS.MOVIES),
+      })
+    }
+  }
+
   if (menu.levelTest.open) {
     dropdownItems.push({
       text: 'Level Test',
+      icon: '/src/images/more-menu/level-test.png',
       onClick: () => setLevelTestOpen(true),
     })
   }
@@ -59,6 +82,7 @@ export default function GlobalNavBarDnf() {
   if (menu.activity.tryAgain.open) {
     dropdownItems.push({
       text: 'Try Again',
+      icon: '/src/images/more-menu/try-again.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -68,25 +92,10 @@ export default function GlobalNavBarDnf() {
       },
     })
   }
-  // 더빙, 무비 메뉴 추가(모바일로 메뉴 축소된 경우에만 추가)
-  if (isGnbBottom) {
-    if (menu.dubbing.open) {
-      dropdownItems.push({
-        text: MENU_ITEM.Dubbing.title,
-        onClick: () => router.push(SITE_PATH.DODON_FRIENDS.DUBBING),
-      })
-    }
-    if (menu.movies.open) {
-      dropdownItems.push({
-        text: MENU_ITEM.Movies.title,
-        onClick: () => router.push(SITE_PATH.DODON_FRIENDS.MOVIES),
-      })
-    }
-  }
-
   if (menu.account.setting.open) {
     dropdownItems.push({
       text: 'Setting',
+      icon: '/src/images/more-menu/setting.png',
       onClick: () => {
         maketingEventTracker.eventAction('GNB 탭 클릭', {
           version: '8th',
@@ -100,6 +109,7 @@ export default function GlobalNavBarDnf() {
     // dropdownItems.push({
     //   // 'PK Workbook MP3',
     //   text: t('t8th342'),
+    //   icon: '/src/images/more-menu/workbooklistening-dodoabc.png',
     //   onClick: () => {
     //     maketingEventTracker.eventAction('GNB 탭 클릭', {
     //       version: '8th',
@@ -217,7 +227,11 @@ interface MenuItemProps {
   isDropdown?: boolean
   onDropdownToggle?: () => void
   isOpen?: boolean
-  dropdownItems?: { text: string; onClick: () => void }[]
+  dropdownItems?: {
+    text: string
+    icon?: string | StaticImageData
+    onClick: () => void
+  }[]
   linkUrl?: string
   onClick?: () => void
 }
@@ -302,6 +316,8 @@ function MenuItem({
       {isDropdown && isOpen && dropdownItems && (
         <GlobalNavDropdowns
           items={dropdownItems}
+          moreGrid
+          showArrow={false}
           isOpen={isOpen}
           onClose={() => {
             if (onDropdownToggle) {

@@ -166,7 +166,8 @@ export default function SeriesList({ booktype }: { booktype: string }) {
         gridTemplateColumns={`repeat(${isPhone ? 2 : 3}, 1fr)`}
         gap={20}>
         {categorySeries?.isLoading ? (
-          <div>Loading series...</div>
+          // 로딩 메세지 표시 영역 (Loading ...)
+          null
         ) : (
           filteredCategory.map((series) => {
             const levelRange =

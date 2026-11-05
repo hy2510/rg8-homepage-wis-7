@@ -209,9 +209,9 @@ function StudyBookList({ activity }: { activity: string }) {
 
   if (search.isLoading) {
     return (
-      <BookListStyle>
+      <BookListStyle className="landscape-book-list">
         {Array.from({ length: 12 }).map((_, index) => (
-          <SkeletonBookItem key={`skeleton-${index}`} />
+          <SkeletonBookItem isLandscape key={`skeleton-${index}`} />
         ))}
       </BookListStyle>
     )
@@ -422,16 +422,17 @@ function StudyBookList({ activity }: { activity: string }) {
       />
       {searchCount > 0 ? (
         <>
-          <BookListStyle>
+          <BookListStyle className="landscape-book-list">
             {search.data?.book?.map((book) => (
               <BookItem
+                isLandscape
                 key={book.levelRoundId}
                 title={book.topicTitle}
                 passCount={book.rgPointCount}
                 addYn={!book.addYn}
                 movieYn={!!book.animationPath}
                 point={book.getableRgPoint}
-                src={book.surfaceImagePath}
+                src={book.studyImagePath || book.surfaceImagePath}
                 levelName={book.levelName}
                 recommendedAge={book.recommendedAge}
                 isCheckable={isExportMode}
@@ -653,9 +654,9 @@ function SongBookList({ activity }: { activity: string }) {
 
   if (search.isLoading) {
     return (
-      <BookListStyle>
+      <BookListStyle className="landscape-book-list">
         {Array.from({ length: 12 }).map((_, index) => (
-          <SkeletonBookItem key={`skeleton-${index}`} />
+          <SkeletonBookItem isLandscape key={`skeleton-${index}`} />
         ))}
       </BookListStyle>
     )
@@ -678,16 +679,17 @@ function SongBookList({ activity }: { activity: string }) {
       <ActionBar title={actionBarTitle} count={searchCount} />
       {searchCount > 0 ? (
         <>
-          <BookListStyle>
+          <BookListStyle className="landscape-book-list">
             {search.data?.book?.map((book) => (
               <BookItem
+                isLandscape
                 key={book.levelRoundId}
                 title={book.topicTitle}
                 passCount={book.rgPointCount}
                 addYn={!book.addYn}
                 movieYn={false}
                 point={book.getableRgPoint}
-                src={book.surfaceImagePath}
+                src={book.studyImagePath || book.surfaceImagePath}
                 levelName={book.levelName}
                 recommendedAge={book.recommendedAge}
                 isCheckable={false}

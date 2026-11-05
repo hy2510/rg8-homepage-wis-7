@@ -79,7 +79,8 @@ export function LanguageResourceProvider({
   }, [context, namespace, res])
 
   if (loading) {
-    return <p>Resource Loading ...</p>
+    // 로딩 메세지 표시 영역 (Resource Loading ...)
+    return null
   }
   return <>{children}</>
 }

@@ -20,6 +20,7 @@ export default function LevelSectionContentEbPb({
   }
   return (
     <>
+      {gapSize > 0 && <Gap size={gapSize} />}
       {section.levels.map((group, index) => {
         return (
           <LevelSectionBody
@@ -57,7 +58,6 @@ function LevelSectionBody({
 }) {
   return (
     <>
-      {gapSize > 0 && <Gap size={gapSize} />}
       <div className={'level-container'}>{children}</div>
       {gapSize > 0 && <Gap size={gapSize} />}
     </>

@@ -286,6 +286,16 @@ export const HpGnbStyled = styled.header`
     }
   }
 
+  @media (min-width: 769px) {
+    .logo .custom-logo {
+      width: auto;
+      height: 52px;
+      max-width: 250px;
+      object-fit: contain;
+      object-position: left center;
+    }
+  }
+
   .navigation {
     display: flex;
     align-items: center;
@@ -663,6 +673,21 @@ export const HpGnbStyled = styled.header`
       padding-inline: 8px;
     }
   }
+
+  @media (max-width: 768px) {
+    .inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .logo .custom-logo {
+      width: auto;
+      height: auto;
+      max-width: min(100%, 250px);
+      max-height: 42px;
+      object-fit: contain;
+      object-position: left center;
+    }
+  }
 `
 
 export const HpFooterStyled = styled.footer`
@@ -971,6 +996,18 @@ export const HpMainStyled = styled.main`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
+
+    @media (max-width: 768px) {
+      .promotion-card:first-child {
+        grid-column: 1 / -1;
+        height: auto;
+        aspect-ratio: 8 / 3;
+      }
+
+      .promotion-card:not(:first-child) {
+        display: none;
+      }
+    }
 
     .image-placeholder,
     .promotion-card {
@@ -2618,7 +2655,7 @@ export const HpNewsStyled = styled.div`
     h1 {
       margin: 0;
       font-size: 1.8em;
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.4;
     }
 
@@ -2759,6 +2796,12 @@ export const HpLeaderboardStyled = styled.div`
     line-height: 1.45;
   }
 
+  .page-title.race-title,
+  .page-title.review-title,
+  .board.hof .page-title {
+    font-weight: 500;
+  }
+
   .stage-carousel {
     position: relative;
   }
@@ -2779,6 +2822,7 @@ export const HpLeaderboardStyled = styled.div`
   }
 
   .stage-card {
+    position: relative;
     width: 140px;
     min-height: 174px;
     flex-shrink: 0;
@@ -2793,6 +2837,38 @@ export const HpLeaderboardStyled = styled.div`
     background: #fff;
     color: var(--font-color-secondary);
     cursor: pointer;
+
+    &:nth-child(n + 1):nth-child(-n + 4) {
+      background-color: #eef8f2;
+    }
+
+    &:nth-child(n + 5):nth-child(-n + 8) {
+      background-color: #eef5ff;
+    }
+
+    &:nth-child(n + 9):nth-child(-n + 12) {
+      background-color: #fff0f5;
+    }
+
+    &:nth-child(n + 13):nth-child(-n + 16) {
+      background-color: #f6effb;
+    }
+
+    &.is-locked > img,
+    &.is-locked > strong,
+    &.is-locked > span {
+      opacity: 0.4;
+    }
+
+    .stage-number {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-family: var(--font-family-secondary);
+      font-size: 0.8em;
+      font-weight: 600;
+      line-height: 1;
+    }
 
     strong {
       color: var(--font-color-primary);
@@ -3622,11 +3698,24 @@ export const HpLeaderboardStyled = styled.div`
     .rank { font-size: 1em; }
     .points { font-size: 0.9em; }
     .who {
-      gap: 8px;
+      gap: 12px;
+      > div:first-child {
+        width: 44px !important;
+        height: 44px !important;
+        flex: 0 0 44px;
+      }
+      > div:last-child { min-width: 0; }
       img { width: 44px; height: 44px; }
       strong { font-size: 0.9em; }
     }
-    .avatar-wrap { width: 44px; height: 44px; }
+    .avatar-wrap {
+      width: 44px;
+      height: 44px;
+      > div {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
     .review-card { padding: 16px; }
     .hof-hero {
       height: 240px;
@@ -5817,6 +5906,7 @@ export const HpAccountSelectStyled = styled.div`
   }
 
   .add-group {
+    font-size: inherit;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -6535,6 +6625,10 @@ export const HpTrialContentStyled = styled(HpAccountSelectStyled).attrs({
     }
   }
 
+  .trial-book-card.is-prek .trial-book-cover {
+    aspect-ratio: 16 / 9;
+  }
+
   .trial-book-cover {
     position: relative;
     aspect-ratio: 4 / 3;
@@ -6548,6 +6642,13 @@ export const HpTrialContentStyled = styled(HpAccountSelectStyled).attrs({
     transition:
       border-color 160ms ease,
       transform 160ms ease;
+
+    .trial-book-backdrop {
+      object-fit: cover;
+      filter: blur(14px) brightness(0.75);
+      transform: scale(1.15);
+      pointer-events: none;
+    }
 
     span {
       font-size: 1em;

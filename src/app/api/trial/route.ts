@@ -52,7 +52,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Alphabet Aa',
           bookCode: 'EB-PK-301',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-301.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-301.jpg',
           levelRoundId: 5882,
           studyId: '000729C2600001633',
           studentHistoryId: '000729C2026000007',
@@ -62,7 +62,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Alphabet Bb',
           bookCode: 'EB-PK-302',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-302.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-302.jpg',
           levelRoundId: 5883,
           studyId: '000729C2600001660',
           studentHistoryId: '000729C2026000007',
@@ -72,7 +72,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Alphabet Cc',
           bookCode: 'EB-PK-303',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-303.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-303.jpg',
           levelRoundId: 5884,
           studyId: '000729C2600001661',
           studentHistoryId: '000729C2026000007',
@@ -82,7 +82,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Alphabet Dd',
           bookCode: 'EB-PK-304',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-304.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-304.jpg',
           levelRoundId: 5953,
           studyId: '000729C2600001662',
           studentHistoryId: '000729C2026000007',
@@ -97,7 +97,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'am/an',
           bookCode: 'EB-PK-401',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-401.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-401.jpg',
           levelRoundId: 5885,
           studyId: '000729C2600001634',
           studentHistoryId: '000729C2026000007',
@@ -107,7 +107,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'ag/ad',
           bookCode: 'EB-PK-402',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-402.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-402.jpg',
           levelRoundId: 5886,
           studyId: '000729C2600001663',
           studentHistoryId: '000729C2026000007',
@@ -117,7 +117,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'at/ap',
           bookCode: 'EB-PK-403',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-403.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-403.jpg',
           levelRoundId: 5887,
           studyId: '000729C2600001664',
           studentHistoryId: '000729C2026000007',
@@ -127,7 +127,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'ed/et',
           bookCode: 'EB-PK-404',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-404.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-404.jpg',
           levelRoundId: 5976,
           studyId: '000729C2600001665',
           studentHistoryId: '000729C2026000007',
@@ -142,7 +142,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Hello, I Am Dodo!',
           bookCode: 'EB-PK-501',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-501.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-501.jpg',
           levelRoundId: 5896,
           studyId: '000729C2600001635',
           studentHistoryId: '000729C2026000007',
@@ -152,7 +152,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'Look at the Sky',
           bookCode: 'EB-PK-502',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-502.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-502.jpg',
           levelRoundId: 5932,
           studyId: '000729C2600001666',
           studentHistoryId: '000729C2026000007',
@@ -162,7 +162,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'What Is This?',
           bookCode: 'EB-PK-503',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-503.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-503.jpg',
           levelRoundId: 5933,
           studyId: '000729C2600001667',
           studentHistoryId: '000729C2026000007',
@@ -172,7 +172,7 @@ const PK_TRIAL_CONTENTS: ContentsList = {
           title: 'She Is My Mother',
           bookCode: 'EB-PK-504',
           image:
-            'https://wcfresource.a1edu.com/newsystem/image/br/covernew1/eb-pk-504.jpg',
+            'https://wcfresource.a1edu.com/newsystem/image/dodoabc/cover/eb-pk-504.jpg',
           levelRoundId: 5934,
           studyId: '000729C2600001668',
           studentHistoryId: '000729C2026000007',

@@ -233,19 +233,35 @@ function TrialBookCard({
 }) {
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
   const imageReady = loadedSrc === image
+  const isPreK = bookCode.startsWith('EB-PK-')
 
   return (
-    <button type="button" className="trial-book-card">
+    <button type="button" className={`trial-book-card${isPreK ? ' is-prek' : ''}`}>
       <span className="trial-book-cover" onClick={() => onClick(bookCode)}>
-        {!imageReady && <span aria-hidden>{title}</span>}
+        {!isPreK && (
+          <Image
+            className="trial-book-backdrop"
+            src={image}
+            alt=""
+            aria-hidden
+            fill
+            sizes="(max-width: 480px) 50vw, (max-width: 768px) 33vw, 25vw"
+          />
+        )}
         <Image
           key={image}
           src={image}
           alt={title}
-          width={151}
-          height={216}
+          width={isPreK ? 320 : 151}
+          height={isPreK ? 180 : 216}
           onLoad={() => setLoadedSrc(image)}
-          style={{
+          style={isPreK ? {
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            opacity: imageReady ? 1 : 0,
+            transition: 'opacity 0.2s ease',
+          } : {
             position: 'absolute',
             top: 12,
             left: '50%',
@@ -257,7 +273,7 @@ function TrialBookCard({
             maxWidth: '100%',
             aspectRatio: 'auto',
             objectFit: 'contain',
-            borderRadius: '10px 10px 0 0',
+            borderRadius: '22px 22px 0 0',
             borderWidth: imageReady ? '3px 3px 0' : 0,
             borderStyle: 'solid',
             borderColor: '#f8fafc',

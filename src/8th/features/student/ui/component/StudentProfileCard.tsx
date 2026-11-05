@@ -27,7 +27,9 @@ interface StudentProfileCardProps {
   levelMasterProgress?: number
   rank?: number
   medal?: 'bronze' | 'silver' | 'gold' | 'platinum' | 'titanium'
-  onMenuClick?: (menuId: 'activity' | 'level' | 'todo' | 'favorite') => void
+  onMenuClick?: (
+    menuId: 'activity' | 'level' | 'todo' | 'favorite' | 'avatar' | 'rank',
+  ) => void
 }
 
 export default function StudentProfileCard({
@@ -52,21 +54,14 @@ export default function StudentProfileCard({
     : undefined
 
   return (
-    <WidgetBoxStyle height="414px">
+    <WidgetBoxStyle>
       <StudentProfileCardStyle>
-        <div
-          className="header"
-          style={{ cursor: isChangeableLevel ? 'pointer' : 'default' }}
-          onClick={
-            isChangeableLevel
-              ? () => {
-                  if (onMenuClick) {
-                    onMenuClick('level')
-                  }
-                }
-              : undefined
-          }>
-          <div className="avatar">
+        <div className="header">
+          <button
+            type="button"
+            className="avatar profile-action"
+            aria-label={t('t037')}
+            onClick={() => onMenuClick?.('avatar')}>
             <div className="wrapper">
               {frameImage && (
                 <Image
@@ -81,7 +76,7 @@ export default function StudentProfileCard({
                 <AvatarSync size="large" />
               </div>
             </div>
-          </div>
+          </button>
           <BoxStyle
             display="flex"
             flexDirection="column"
@@ -97,12 +92,28 @@ export default function StudentProfileCard({
             </BoxStyle>
             {!!level && (
               <TextStyle
+                className="profile-level-rank"
                 fontSize="0.75em"
                 fontColor="lightBlue"
                 textAlign="center">
-                Lv.{' '}
-                {`${LevelUtils.getLevelLabel(level)} (${Math.min(levelMasterProgress, 100)}%)`}{' '}
-                {0 < rank && rank < 1000 ? `/ Rank ${rank}` : ''}
+                <button
+                  type="button"
+                  className="profile-action"
+                  disabled={!isChangeableLevel}
+                  onClick={() => onMenuClick?.('level')}>
+                  Lv. {`${LevelUtils.getLevelLabel(level)} (${Math.min(levelMasterProgress, 100)}%)`}
+                </button>
+                {0 < rank && rank < 1000 && (
+                  <>
+                    <span className="profile-separator"> · </span>
+                    <button
+                      type="button"
+                      className="profile-action"
+                      onClick={() => onMenuClick?.('rank')}>
+                      Rank {rank}
+                    </button>
+                  </>
+                )}
               </TextStyle>
             )}
           </BoxStyle>

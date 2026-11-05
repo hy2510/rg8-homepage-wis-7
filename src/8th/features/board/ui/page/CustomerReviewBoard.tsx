@@ -52,7 +52,7 @@ export default function CustomerReviewBoard({
   if (reviewList.isError) {
     return (
       <div className="board">
-        <h1 className="page-title">{heading}</h1>
+        <h1 className="page-title review-title">{heading}</h1>
         <div className="review-status">{t('t8th0151')}</div>
       </div>
     )
@@ -60,7 +60,7 @@ export default function CustomerReviewBoard({
 
   return (
     <div className="board">
-      <h1 className="page-title">{heading}</h1>
+      <h1 className="page-title review-title">{heading}</h1>
 
       {reviewList.isLoading ? (
         <div className="review-status">{t('t8th0152')}</div>

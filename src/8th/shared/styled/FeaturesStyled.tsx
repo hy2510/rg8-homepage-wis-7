@@ -4293,6 +4293,27 @@ export const BookItemStyle = styled.div<{ level: string }>`
   flex-direction: column;
   align-items: center;
 
+  &.is-landscape {
+    .book-cover-container {
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .book-cover-wrapper .book-cover-media,
+    .book-cover-container .book-cover-skeleton {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
+    .book-cover-wrapper .book-cover {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
   .book-cover-container {
     cursor: pointer;
     width: 100%;
@@ -4626,6 +4647,15 @@ export const BookListStyle = styled.div`
   @media (max-width: 350px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px 5px;
+  }
+
+  &.landscape-book-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+
+    ${phone(`
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    `)}
   }
 `
 
@@ -6573,6 +6603,32 @@ export const StudentProfileCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  .profile-action {
+    border: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  .profile-level-rank {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .profile-separator {
+    color: var(--font-color-secondary);
+  }
 
   .header {
     display: flex;

@@ -1,7 +1,7 @@
 'use client'
 
 import { Assets } from '@/8th/assets/asset-library'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   DropdownContainerStyle,
@@ -20,6 +20,8 @@ interface DropdownMenuProps extends Pick<
 > {
   items: {
     text: string
+    icon?: string | StaticImageData
+    isService?: boolean
     subText?: string
     onClick?: () => void
   }[]
@@ -27,6 +29,7 @@ interface DropdownMenuProps extends Pick<
   onClose?: () => void
   showArrow?: boolean
   currentIndex?: number
+  moreGrid?: boolean
 }
 
 const VIEWPORT_PADDING = 10
@@ -88,6 +91,7 @@ export default function GlobalNavDropdowns({
   showArrow = true,
   viewGrid = false,
   currentIndex,
+  moreGrid = false,
 }: DropdownMenuProps) {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [measuredStyle, setMeasuredStyle] = useState<
@@ -146,11 +150,34 @@ export default function GlobalNavDropdowns({
 
   return (
     <DropdownContainerStyle
+      className={moreGrid ? 'more-menu-grid' : undefined}
       position={position}
       ref={dropdownRef}
       viewGrid={viewGrid}
       style={measuredStyle}>
       {items.map((item, index) => {
+        if (moreGrid) {
+          return (
+            <React.Fragment key={item.text}>
+              {index > 0 && !items[index - 1].isService && item.isService && (
+                <div className="more-menu-divider" role="separator" />
+              )}
+              <button
+                type="button"
+                className="more-menu-tile"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  item.onClick?.()
+                  onClose?.()
+                }}>
+                {item.icon && (
+                  <Image src={item.icon} alt="" width={34} height={34} />
+                )}
+                <span>{item.text}</span>
+              </button>
+            </React.Fragment>
+          )
+        }
         const textLines = item.text
           .split('\n')
           .filter((line) => line.trim() !== '')

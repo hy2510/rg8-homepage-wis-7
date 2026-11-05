@@ -169,7 +169,8 @@ function WriteResultHistoryList({
   const { onStartStudy } = useStartStudy('review', 'dnf')
 
   if (history.isLoading) {
-    return <div>Loading...</div>
+    // 로딩 메세지 표시 영역 (Loading ...)
+    return null
   }
   if (!history.data) {
     return <div>No data</div>

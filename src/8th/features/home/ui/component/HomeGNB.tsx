@@ -115,6 +115,7 @@ export default function HomeGNB({
         <Link className="logo" href="/" aria-label={t('t8th0319')}>
           {!!customLogo && (
             <Image
+              className="custom-logo"
               src={customLogo}
               width={190}
               height={30}

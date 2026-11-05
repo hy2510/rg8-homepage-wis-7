@@ -178,13 +178,13 @@ function MainLayout({ children }: { children: React.ReactNode }) {
   const { isShowSelfStudentChangeModal, onClassGroupChangeResult } =
     useSelfStudentChangeInfo()
 
-  // App User Guide 모달
-  const [isShowAppUserGuideModal, setShowAppUserGuideModal] = useState(false)
-  useEffect(() => {
-    if (userConfig._id && userConfig.appUserGuideAutoShow) {
-      setShowAppUserGuideModal(true)
-    }
-  }, [userConfig._id, userConfig.appUserGuideAutoShow])
+  // App User Guide 모달 -> 잠정 출력 보류 (2026-11-03)
+  // const [isShowAppUserGuideModal, setShowAppUserGuideModal] = useState(false)
+  // useEffect(() => {
+  //   if (userConfig._id && userConfig.appUserGuideAutoShow) {
+  //     setShowAppUserGuideModal(true)
+  //   }
+  // }, [userConfig._id, userConfig.appUserGuideAutoShow])
 
   useEffect(() => {
     injectUid(studentId)
@@ -484,12 +484,12 @@ function MainLayout({ children }: { children: React.ReactNode }) {
         />
       )}
 
-      {isShowAppUserGuideModal && (
+      {/* {isShowAppUserGuideModal && (
         <AppUserGuideModal
           isInitialPopup={userConfig.appUserGuideAutoShow}
           onCloseModal={() => setShowAppUserGuideModal(false)}
         />
-      )}
+      )} */}
       {recommendLevel.visible && recommendLevel.popupType === 'change' && (
         <LevelGuidanceModal
           title={`${t('t8th302')}`}
@@ -607,6 +607,12 @@ function MainLayout({ children }: { children: React.ReactNode }) {
                 onMenuClick={(linkId) => {
                   if (linkId === 'level') {
                     setLevelMasterModalOpen(true)
+                  } else if (linkId === 'avatar') {
+                    router.push(SITE_PATH.STUDENT_8TH.ACCOUNTINFO_SETTING)
+                  } else if (linkId === 'rank') {
+                    router.push(
+                      `${SITE_PATH.STUDENT_8TH.RANKING}?tab=earned-points-rank&period=total`,
+                    )
                   } else if (linkId === 'activity') {
                     router.push(SITE_PATH.STUDENT_8TH.ACTIVITY)
                   } else if (linkId === 'todo') {
